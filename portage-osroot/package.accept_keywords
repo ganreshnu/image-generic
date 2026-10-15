@@ -1,0 +1,3 @@
+sys-apps/systemd ~amd64
+sys-apps/kmscon ~amd64
+dev-libs/libtsm ~amd64

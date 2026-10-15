@@ -1,0 +1,15 @@
+*/* -pam -python -caps -policykit -acl -xattr cryptsetup
+sys-apps/systemd -dns-over-tls -idn -gcrypt -kernel-install vanilla -libarchive -lz4 openssl -pcre -resolvconf -boot -ukify
+app-shells/bash -net
+sys-apps/kbd -bzip2 -zlib -zstd
+sys-apps/shadow
+sys-apps/util-linux -cramfs -su -suid -logger -hardlink
+sys-apps/coreutils vanilla
+sys-fs/erofs-utils -lz4 -lzma -zlib
+sys-fs/btrfs-progs -convert -man
+sys-libs/glibc -multiarch -hash-sysv-compat
+app-arch/zstd -lzma zlib
+sys-apps/kmod -lzma -zlib
+sys-fs/cryptsetup
+dev-libs/openssl vanilla -quic
+dev-libs/json-c threads

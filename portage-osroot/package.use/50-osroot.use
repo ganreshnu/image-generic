@@ -1,0 +1,37 @@
+*/* cryptsetup idn icu caps dbus cxx berkdb introspection bzip2 lzip lzma seccomp zlib zstd io-uring lz4 python fips wayland gif jpeg tiff vala
+
+# glibc
+sys-libs/glibc -multiarch -hash-sysv-compat nscd
+sys-libs/timezone-data leaps-timezone
+dev-libs/openssl vanilla rfc3779 sctp -fips
+sys-libs/readline utils
+sys-libs/ncurses gpm
+
+# compression not needed
+sys-apps/kbd -bzip2 -zlib -zstd -lzma xkb
+sys-apps/kmod -lzma -zlib -zstd
+
+# systemd
+sys-apps/systemd -kernel-install vanilla curl fido2 homed importd pkcs11 qrcode tpm xkb bpf elfutils
+sys-apps/util-linux -cramfs -su -suid -logger -hardlink tty-helpers magic
+dev-libs/libfido2 hidapi
+dev-db/sqlite tools
+dev-lang/python tail-call-interp bluetooth
+dev-libs/json-c threads
+dev-libs/elfutils -debuginfod
+x11-libs/libxkbcommon tools
+sys-auth/pambase -passwdqc homed mktemp securetty
+net-misc/curl ssh zstd gopher sasl-scram telnet brotli
+sys-fs/lvm2 nvme lvm vdo thin
+sys-libs/libnvme keyutils
+
+app-shells/bash
+sys-apps/shadow -skey
+sys-apps/coreutils vanilla gmp
+sys-fs/erofs-utils -lz4 -lzma -zlib
+sys-fs/btrfs-progs -convert -man
+
+# smartcard bpf
+# sys-libs/libcap-ng bpf
+# dev-libs/libfido2 smartcard
+# sys-apps/systemd imds

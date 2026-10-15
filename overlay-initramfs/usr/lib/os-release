@@ -1,0 +1,7 @@
+NAME="AverettOS Linux"
+IMAGE_ID=averettos
+IMAGE_VERSION="0.0.1"
+RELEASE_TYPE=development
+VARIANT="initramfs"
+VARIANT_ID=initramfs
+DEFAULT_HOSTNAME=averettos
