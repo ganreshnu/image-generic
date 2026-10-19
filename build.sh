@@ -76,7 +76,7 @@ Main() {
 	#
 	rm -fr output/image-osroot; mkdir -p output/image-osroot
 	Notice build 'imaging the root filesystem'
-	Builder image --outdir=output/image-osroot --name=osroot --definitions=repart.d-usr output/glibc output/osroot output/linux overlay-osroot overlay-locality overlay-verity overlay-network --private-key=verity.key --certificate=verity.crt
+	Builder image --outdir=output/image-osroot --name=osroot --definitions=repart.d-usr output/glibc output/osroot output/newuse output/linux overlay-osroot overlay-dtroot overlay-locality overlay-verity overlay-network --private-key=verity.key --certificate=verity.crt
 
 	#
 	# build the uki
