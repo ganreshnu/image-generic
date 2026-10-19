@@ -1,0 +1,52 @@
+*/* alsa ogg gtk sqlite modemmanager cairo vulkan gstreamer romio
+net-wireless/wpa_supplicant wps
+dev-libs/libnl utils
+gui-wm/niri screencast
+sys-apps/xdg-desktop-portal flatpak -geolocation
+media-video/pipewire bluetooth echo-cancel extra ffmpeg fftw flatpak gsettings libcamera loudness lv2 v4l roc sofa sound-server zeroconf
+media-video/ffmpeg qrcode sndio opus gcrypt gmp lame lv2 theora v4l vaapi vdpau vorbis
+sci-libs/fftw threads mpi
+media-libs/flac ogg
+net-misc/socat tcpd
+media-sound/lame sndfile
+media-sound/mpg123-base int-quality
+app-crypt/pinentry -efl keyring
+# dev-libs/efl avif bmp dds drm
+media-libs/libsndfile minimal
+dev-lang/lua -deprecated
+sys-apps/tcp-wrappers netgroups
+dev-libs/sord tools
+dev-libs/leancrypto tools
+media-libs/dav1d xxhash
+app-crypt/gnupg tpm usb wks-server
+media-libs/opus custom-modes deep-plc dred osce
+media-libs/roc-toolkit tools sndfile sox
+gui-libs/gtk broadway cloudproviders colord
+dev-util/ostree archive libmount sodium
+net-libs/libsoup gssapi
+app-misc/geoclue modemmanager
+app-crypt/libsecret tpm
+app-crypt/mit-krb5 lmdb
+net-misc/openssh ldns security-key
+sys-apps/hwloc l0 svg xml
+media-sound/sox amr ao dolbyb encode fftw flac id3tag ladspa loudness mad opus png sndfile sndio speexdsp wavpack
+media-libs/gst-plugins-base gbm ivorbis opengl theora
+media-sound/liblc3 tools
+media-libs/libao sndio mmap
+sys-fs/e2fsprogs archive fuse
+dev-libs/libinput lua
+media-libs/gst-plugins-bad vaapi vnc
+net-wireless/bluez btpclient midi
+media-libs/libcamera drm elfutils tools v4l
+media-libs/libv4l bpf dvb
+net-dns/avahi autoipd bookmarks
+sys-apps/pciutils dns
+dev-python/twisted conch http2 serial websockets
+net-libs/libproxy duktape
+virtual/mpi threads
+net-libs/gnutls brotli dane pkcs11 tools
+x11-libs/libvdpau dri
+
+
+
+# media-libs/gstreamer ptp

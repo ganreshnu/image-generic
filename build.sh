@@ -3,6 +3,7 @@ set -eu
 Main() {
 	local kconfigs=(
 		--kconfig=kernel.config
+		--kconfig=macbookair.config
 	)
 	local basepkgs=(
 		sys-apps/systemd sys-apps/kbd sys-apps/shadow
@@ -30,13 +31,21 @@ Main() {
 	Notice build 'installing the bootloader'
 	Builder bootloader --root output/linux
 
-	# #
-	# # emerge the initramfs filesystem
-	# #
-	# mkdir -p output/{.work,initramfs}
-	# Notice build 'building the initramfs filesystem'
-	# Builder "${kconfigs[@]}" emerge --nproc=16 --jobs=2 --workdir=output/.work --root=output/initramfs --confdir=portage-initramfs --noreplace "${basepkgs[@]}" \
-	# 	# --pretend; return
+	#
+	# emerge glibc
+	#
+	mkdir -p output/{.work,glibc}
+	Notice build 'building the glibc filesystem'
+	Builder "${kconfigs[@]}" emerge --nproc=16 --jobs=2 --workdir=output/.work --root=output/glibc --confdir=portage-glibc --noreplace sys-apps/baselayout sys-libs/glibc \
+		# --pretend; return
+
+	#
+	# emerge the initramfs filesystem
+	#
+	mkdir -p output/{.work,initramfs}
+	Notice build 'building the initramfs filesystem'
+	Builder "${kconfigs[@]}" emerge --nproc=16 --jobs=2 --workdir=output/.work output/glibc --root=output/initramfs --confdir=portage-glibc --confdir=portage-initramfs --noreplace "${basepkgs[@]}" \
+		# --pretend; return
 
 	#
 	# build the initramfs cpio
@@ -44,30 +53,30 @@ Main() {
 	mkdir -p output/{.work,linux}
 	Notice build 'building the initramfs cpio'
 	# Builder "${kconfigs[@]}" cpio --workdir=output/.work --root=output/linux --rootpw="${ Builder -- mkpasswd "root"; }" overlay-initramfs output/initramfs #kvm-intel battery
-	Builder "${kconfigs[@]}" cpio --workdir=output/.work --root=output/linux output/initramfs overlay-initramfs overlay-repart overlay-verity overlay-locality --rootpw=root 
+	Builder "${kconfigs[@]}" cpio --workdir=output/.work output/glibc output/initramfs --root=output/linux overlay-initramfs overlay-repart overlay-verity overlay-locality --rootpw=root 
 
-	# #
-	# # emerge the root filesystem
-	# #
-	# mkdir -p output/{.work,osroot}
-	# Notice build 'building the root filesystem'
-	# Builder "${kconfigs[@]}" emerge --nproc=16 --jobs=2 --workdir=output/.work --root=output/osroot --confdir=portage-osroot --noreplace "${basepkgs[@]}" \
-	# 	--pretend --confdir=portage-dtroot; return
+	#
+	# emerge the root filesystem
+	#
+	mkdir -p output/{.work,osroot}
+	Notice build 'building the root filesystem'
+	Builder "${kconfigs[@]}" emerge --nproc=16 --jobs=2 --workdir=output/.work output/glibc --root=output/osroot --confdir=portage-glibc --confdir=portage-osroot --noreplace "${basepkgs[@]}" \
+		# --pretend; return
 
-	# #
-	# # emerge kmscon
-	# #
-	# mkdir -p output/{.work,kmscon}
-	# Notice build 'building the root filesystem'
-	# Builder "${kconfigs[@]}" emerge --nproc=16 --jobs=2 --workdir=output/.work --root=output/kmscon output/osroot --confdir=portage-osroot --noreplace sys-apps/kmscon media-fonts/fira-mono \
-	# 	# --pretend; return
+	#
+	# emerge the changed use flag packages
+	#
+	mkdir -p output/{.work,newuse}
+	Notice build 'building the changed use flag packages'
+	Builder "${kconfigs[@]}" emerge --nproc=16 --jobs=2 --workdir=output/.work output/glibc output/osroot --root=output/newuse --confdir=portage-glibc --confdir=portage-osroot --confdir=portage-dtroot --newuse sys-auth/polkit \
+		# --pretend; return
 
 	#
 	# image the root filesystem
 	#
 	rm -fr output/image-osroot; mkdir -p output/image-osroot
 	Notice build 'imaging the root filesystem'
-	Builder image --outdir=output/image-osroot --name=osroot --definitions=repart.d-usr output/osroot output/linux overlay-osroot overlay-dtroot overlay-locality overlay-verity overlay-network --private-key=verity.key --certificate=verity.crt
+	Builder image --outdir=output/image-osroot --name=osroot --definitions=repart.d-usr output/glibc output/osroot output/newuse output/linux overlay-osroot overlay-dtroot overlay-locality overlay-verity overlay-network --private-key=verity.key --certificate=verity.crt
 
 	#
 	# build the uki
@@ -105,3 +114,9 @@ Main "$@"
 #
 #	brcm/bcm43xx-0.fw
 #	brcm/bcm43xx_hdr-0.fw
+#
+# CONFIG_DEBUG_INFO_BTF:	 is not set when it should be.
+# CONFIG_FTRACE_SYSCALLS:	 is not set when it should be.
+# CONFIG_KPROBES:	 is not set when it should be.
+# CONFIG_KRETPROBES:	 is not set when it should be.
+# CONFIG_KPROBE_EVENTS:	 is not set when it should be.
