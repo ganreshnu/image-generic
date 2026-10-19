@@ -1,0 +1,3 @@
+*/* caps
+sys-libs/glibc -multiarch -hash-sysv-compat nscd
+sys-libs/timezone-data leaps-timezone

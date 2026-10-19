@@ -1,9 +1,7 @@
-*/* cryptsetup idn icu caps dbus cxx berkdb introspection bzip2 lzip lzma seccomp zlib zstd io-uring lz4 python fips wayland gif jpeg tiff vala
+*/* cryptsetup idn icu dbus cxx berkdb introspection bzip2 lzip lzma seccomp zlib zstd io-uring lz4 python fips wayland gif jpeg tiff vala bpf
 
-# glibc
-sys-libs/glibc -multiarch -hash-sysv-compat nscd
-sys-libs/timezone-data leaps-timezone
-dev-libs/openssl vanilla rfc3779 sctp -fips
+# disabling fips makes the build succeed first try, fips is also a global
+dev-libs/openssl vanilla rfc3779 sctp fips
 sys-libs/readline utils
 sys-libs/ncurses gpm
 
@@ -12,7 +10,7 @@ sys-apps/kbd -bzip2 -zlib -zstd -lzma xkb
 sys-apps/kmod -lzma -zlib -zstd
 
 # systemd
-sys-apps/systemd -kernel-install vanilla curl fido2 homed importd pkcs11 qrcode tpm xkb bpf elfutils
+sys-apps/systemd -kernel-install vanilla curl fido2 homed importd pkcs11 qrcode tpm xkb elfutils
 sys-apps/util-linux -cramfs -su -suid -logger -hardlink tty-helpers magic
 dev-libs/libfido2 hidapi
 dev-db/sqlite tools
@@ -24,6 +22,7 @@ sys-auth/pambase -passwdqc homed mktemp securetty
 net-misc/curl ssh zstd gopher sasl-scram telnet brotli
 sys-fs/lvm2 nvme lvm vdo thin
 sys-libs/libnvme keyutils
+app-misc/mime-types nginx
 
 app-shells/bash
 sys-apps/shadow -skey
@@ -31,7 +30,7 @@ sys-apps/coreutils vanilla gmp
 sys-fs/erofs-utils -lz4 -lzma -zlib
 sys-fs/btrfs-progs -convert -man
 
+# sys-libs/libcap-ng -bpf
 # smartcard bpf
-# sys-libs/libcap-ng bpf
 # dev-libs/libfido2 smartcard
 # sys-apps/systemd imds
