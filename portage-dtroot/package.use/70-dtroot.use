@@ -1,9 +1,12 @@
-# gtk stuff - disable polkit gtk for a server
+# gtk stuff - enables polkit gtk for a desktop
+*/* cups
 sys-auth/polkit gtk
 x11-libs/gtk+ broadway cloudproviders colord
 media-libs/mesa llvm vaapi vulkan VIDEO_CARDS: intel nouveau nvk -radeonsi i915 d3d12 virgl radeon
-media-libs/freetype brotli harfbuzz
+media-libs/freetype brotli harfbuzz svg
 net-misc/gsasl ntlm
 app-accessibility/at-spi2-core dbus-broker
 media-gfx/graphite2 ithreads quadmath
 media-libs/tiff libdeflate
+x11-libs/cairo lzo
+net-print/cups usb

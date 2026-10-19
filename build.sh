@@ -53,7 +53,7 @@ Main() {
 	mkdir -p output/{.work,linux}
 	Notice build 'building the initramfs cpio'
 	# Builder "${kconfigs[@]}" cpio --workdir=output/.work --root=output/linux --rootpw="${ Builder -- mkpasswd "root"; }" overlay-initramfs output/initramfs #kvm-intel battery
-	Builder "${kconfigs[@]}" cpio --workdir=output/.work output/glibc output/initramfs --root=output/linux overlay-initramfs overlay-repart overlay-verity overlay-locality --rootpw=root 
+	Builder "${kconfigs[@]}" cpio --workdir=output/.work --root=output/linux output/initramfs overlay-initramfs overlay-repart overlay-verity overlay-locality --rootpw=root 
 
 	#
 	# emerge the root filesystem
@@ -76,7 +76,7 @@ Main() {
 	#
 	rm -fr output/image-osroot; mkdir -p output/image-osroot
 	Notice build 'imaging the root filesystem'
-	Builder image --outdir=output/image-osroot --name=osroot --definitions=repart.d-usr output/glibc output/osroot output/newuse output/linux overlay-osroot overlay-dtroot overlay-locality overlay-verity overlay-network --private-key=verity.key --certificate=verity.crt
+	Builder image --outdir=output/image-osroot --name=osroot --definitions=repart.d-usr output/osroot output/linux overlay-osroot overlay-dtroot overlay-locality overlay-verity overlay-network --private-key=verity.key --certificate=verity.crt
 
 	#
 	# build the uki

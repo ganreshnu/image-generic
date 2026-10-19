@@ -1,8 +1,8 @@
-*/* -pam -python -caps -policykit -acl -xattr cryptsetup
+# disable evertything except cryptsetup
+*/* -pam -python -policykit -acl -xattr -caps cryptsetup
 sys-apps/systemd -dns-over-tls -idn -gcrypt -kernel-install vanilla -libarchive -lz4 openssl -pcre -resolvconf -boot -ukify
 app-shells/bash -net
 sys-apps/kbd -bzip2 -zlib -zstd
-sys-apps/shadow
 sys-apps/util-linux -cramfs -su -suid -logger -hardlink
 sys-apps/coreutils vanilla
 sys-fs/erofs-utils -lz4 -lzma -zlib
